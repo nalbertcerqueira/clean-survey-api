@@ -16,7 +16,7 @@ Para Seguir os princípios propostos por Uncle Bob em seu artigo sobre [Clean Ar
 -   Domain e Presentation → Camadas independentes de códigos de terceiros;
 -   Infrastructure e Main → Camadas dependentes de códigos de terceiros;
 
-Abaixo segue uma descrição mais detalhada sobre cada uma delas. E um exemplo demonstrando a arquitetura para o **caso de uso do cadastro de usuários**.
+Abaixo segue uma descrição mais detalhada sobre cada uma delas, como também, um exemplo demonstrando a arquitetura para o **caso de uso do cadastro de usuários**.
 
 <img width="900px" src="https://github.com/nalbertcerqueira/nalbertcerqueira/assets/105606295/4547edb3-b9e7-4a72-b834-8049434a7634">
 
@@ -32,11 +32,11 @@ Aqui a camada de apresentação é responsável por conectar os resultados vindo
 
 #### 🟠 Camada de infraestrutura (Infra Layer)
 
-Sendo uma camada que depende de códigos de terceiros, a camada de infraestrutura fica responsável pelas implementações concretas de serviços externos, repositórios, validadores e adaptadores; se comunicando com a camada de apresentação através de interfaces como: **HttpRequest** e **HttpResponse**, e também com a camada de domínio através das interfaces de repositórios e serviços.
+Sendo uma camada que depende de códigos de terceiros, a camada de infraestrutura fica responsável pelas implementações concretas de serviços externos, repositórios, validadores e adaptadores; se comunicando com a camada de apresentação através de interfaces, como: **HttpRequest** e **HttpResponse**, e também, com a camada de domínio através das interfaces de repositórios e serviços.
 
 #### ⚪ Camada principal (Main Layer)
 
-A camada de infraestrutura fica responsável pela implementação do servidor, inicialização e configuração das rotas e aplicação de middlewares de terceiros. Além disso, é nela onde ocorre a composição das dependências através das **factories**.
+A camada principal fica responsável pela implementação do servidor, inicialização e configuração das rotas e aplicação de middlewares de terceiros. Além disso, é nela onde ocorre a composição das dependências através das **factories**.
 
 ### Estrutura do projeto
 
