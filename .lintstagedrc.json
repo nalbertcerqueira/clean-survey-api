@@ -1,0 +1,5 @@
+{
+    "*.ts": ["eslint", "npm run ts-lint"],
+    "*.js": ["eslint"],
+    "*.mjs": ["eslint"]
+}
