@@ -1,5 +1,5 @@
 {
-    "*.ts": ["eslint", "npm run ts-lint"],
-    "*.js": ["eslint"],
-    "*.mjs": ["eslint"]
+    "*.ts": ["eslint --quiet", "npm run ts-lint"],
+    "*.js": ["eslint --quiet"],
+    "*.mjs": ["eslint --quiet"]
 }
