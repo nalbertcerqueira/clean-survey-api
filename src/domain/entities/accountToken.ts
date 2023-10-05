@@ -1,6 +1,7 @@
-//Representação de um registro dos tokens de um usuário
+//Representação de um token de um usuário
 export interface IAccountToken {
     readonly id: string
     accountId: string
-    accessToken: string
+    tokenName: "accessToken"
+    tokenValue: string
 }
