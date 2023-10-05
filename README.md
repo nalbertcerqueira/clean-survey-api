@@ -83,7 +83,7 @@ src - ROOT
 | ---------- | -------------------------- | ----------------------------------------------- |
 | GET        | `/api/surveys`             | Retorna uma lista com todas as enquetes         |
 | POST       | `/api/surveys`             | Cria uma nova enquete                           |
-| GET        | `/api/surveys/:id/results` | Retorna o resultado de uma enquete:             |
+| GET        | `/api/surveys/:id/results` | Retorna o resultado de uma enquete              |
 | PUT        | `/api/surveys/:id/results` | Responde a uma enquete                          |
 | DELETE     | `/api/surveys/:id/results` | Cancela a participação o usuário em uma enquete |
 
