@@ -20,7 +20,7 @@ export class YupSignUpValidator implements SchemaValidatorService {
         }).noUnknown()
     }
 
-    async validate(data: Record<string, any>): Promise<ValidationResult> {
+    public async validate(data: Record<string, any>): Promise<ValidationResult> {
         const validationOptions: ValidateOptions = { abortEarly: false, strict: true }
         try {
             await this.signUpSchema.validate(data, validationOptions)

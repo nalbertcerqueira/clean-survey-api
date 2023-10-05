@@ -16,7 +16,7 @@ export class YupCreateSurveyValidator implements SchemaValidatorService {
         }).noUnknown()
     }
 
-    async validate(data: Record<string, any>): Promise<ValidationResult> {
+    public async validate(data: Record<string, any>): Promise<ValidationResult> {
         const validationOptions: ValidateOptions = { strict: true, abortEarly: false }
         try {
             await this.SurveySchema.validate(data, validationOptions)

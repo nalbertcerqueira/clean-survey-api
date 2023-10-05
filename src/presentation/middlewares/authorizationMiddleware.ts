@@ -10,7 +10,7 @@ export class AuthorizationMiddleware implements Middleware {
         private readonly role?: string
     ) {}
 
-    async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+    public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         const authHeader = httpRequest.headers?.authorization
         const accessToken = authHeader?.split(" ")[1] || ""
 

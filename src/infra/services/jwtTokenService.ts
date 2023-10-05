@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken"
 export class JwtTokenService implements TokenGeneratorService, TokenValidatorService {
     constructor(private readonly secretKey: string) {}
 
-    async generate(id: string): Promise<string> {
+    public async generate(id: string): Promise<string> {
         const iat: number = Math.floor(Date.now() / 1000)
         const expiresIn: number = 86400
 
@@ -16,7 +16,7 @@ export class JwtTokenService implements TokenGeneratorService, TokenValidatorSer
         return token
     }
 
-    async validate(token: string): Promise<Payload | null> {
+    public async validate(token: string): Promise<Payload | null> {
         try {
             const payload = jwt.verify(token, this.secretKey) as Payload
             return payload

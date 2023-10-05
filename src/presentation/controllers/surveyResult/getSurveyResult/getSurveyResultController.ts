@@ -7,7 +7,7 @@ import { Controller } from "@presentation/protocols/controller"
 export class GetSurveyResultController implements Controller {
     constructor(private readonly getSurveyResultUseCase: GetSurveyResultUseCase) {}
 
-    async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+    public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         const surveyId = httpRequest.params?.id as string
 
         try {

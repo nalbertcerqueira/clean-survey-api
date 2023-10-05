@@ -14,7 +14,7 @@ import {
 export class MongoAccountRepository
     implements AddAccountRepository, FindAccountByEmailRepository, FindAccountByIdRepository
 {
-    async add(account: AccountWithoutId): Promise<IAccount> {
+    public async add(account: AccountWithoutId): Promise<IAccount> {
         await mongoHelper.connect()
 
         const accountCollection = mongoHelper.db.collection("accounts")
@@ -31,7 +31,7 @@ export class MongoAccountRepository
         return { ...account, id: insertedId.toString() }
     }
 
-    async findByEmail(email: string): Promise<IAccount | null> {
+    public async findByEmail(email: string): Promise<IAccount | null> {
         await mongoHelper.connect()
 
         const accountCollection = mongoHelper.db.collection("accounts")
@@ -46,7 +46,7 @@ export class MongoAccountRepository
         return null
     }
 
-    async findById(id: string, role?: string): Promise<IAccount | null> {
+    public async findById(id: string, role?: string): Promise<IAccount | null> {
         try {
             new ObjectId(id)
         } catch {

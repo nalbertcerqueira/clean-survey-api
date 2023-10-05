@@ -5,11 +5,11 @@ import bcrypt from "bcrypt"
 export class BcryptEncrypterService implements HashService, HashCompareService {
     constructor(private readonly salt: number) {}
 
-    async hash(input: string): Promise<string> {
+    public async hash(input: string): Promise<string> {
         return await bcrypt.hash(input, this.salt)
     }
 
-    async compare(input: string, hash: string): Promise<boolean> {
+    public async compare(input: string, hash: string): Promise<boolean> {
         return await bcrypt.compare(input, hash)
     }
 }

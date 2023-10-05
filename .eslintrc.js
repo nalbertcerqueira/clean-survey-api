@@ -29,6 +29,19 @@ module.exports = {
     plugins: ["prettier", "@typescript-eslint"],
     rules: {
         "prettier/prettier": ["error"],
-        "@typescript-eslint/no-explicit-any": "warn"
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/explicit-member-accessibility": [
+            "error",
+            {
+                accessibility: "explicit",
+                overrides: {
+                    accessors: "explicit",
+                    constructors: "off",
+                    methods: "explicit",
+                    properties: "explicit",
+                    parameterProperties: "explicit"
+                }
+            }
+        ]
     }
 }

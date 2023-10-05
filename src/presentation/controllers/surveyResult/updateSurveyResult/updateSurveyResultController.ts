@@ -10,7 +10,7 @@ export class UpdateSurveyResultController implements Controller {
         private readonly schemaValidator: SchemaValidatorService
     ) {}
 
-    async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+    public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         const { body, params, locals } = httpRequest
         const answerId = body?.answerId as string
         const surveyId = params?.id as string

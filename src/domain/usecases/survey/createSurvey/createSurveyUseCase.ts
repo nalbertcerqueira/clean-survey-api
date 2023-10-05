@@ -6,7 +6,7 @@ import { AddSurveyRepository } from "@domain/repositories/survey/addSurveyReposi
 export class CreateSurveyUseCase {
     constructor(private readonly addSurveyRepository: AddSurveyRepository) {}
 
-    async execute(rawSurvey: CreateSurveyInputDTO): Promise<void> {
+    public async execute(rawSurvey: CreateSurveyInputDTO): Promise<void> {
         const { question, answers } = rawSurvey
         const answersWithId = answers.map((answer) => new SurveyAnswer(answer))
 

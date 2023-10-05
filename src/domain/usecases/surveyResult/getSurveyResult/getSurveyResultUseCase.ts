@@ -5,7 +5,7 @@ import { FindSurveyResultByIdRepository } from "@domain/repositories/surveyResul
 export class GetSurveyResultUseCase {
     constructor(private readonly findSurveyResultRepository: FindSurveyResultByIdRepository) {}
 
-    async execute(surveyId: string): Promise<ISurveyResult | null> {
+    public async execute(surveyId: string): Promise<ISurveyResult | null> {
         const foundSurvey = await this.findSurveyResultRepository.findBySurveyId(surveyId)
 
         return foundSurvey

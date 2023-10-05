@@ -10,7 +10,7 @@ export class LoginController implements Controller {
         private readonly authenticationUseCase: AuthenticationUseCase
     ) {}
 
-    async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+    public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         const { email, password } = httpRequest.body
         const validationResult = await this.schemaValidator.validate(httpRequest.body)
 

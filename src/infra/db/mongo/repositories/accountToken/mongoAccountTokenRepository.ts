@@ -2,7 +2,10 @@ import { mongoHelper } from "@infra/db/mongo/config/mongodb-config"
 import { FindTokenByIdRepository, UpdateTokenRepository, MongoTokenModel } from "./protocols"
 
 export class MongoAccountTokenRepository implements UpdateTokenRepository, FindTokenByIdRepository {
-    async findByAccountId(accountId: string, tokenName: "accessToken"): Promise<string | null> {
+    public async findByAccountId(
+        accountId: string,
+        tokenName: "accessToken"
+    ): Promise<string | null> {
         await mongoHelper.connect()
 
         const tokenCollection = mongoHelper.db.collection("accountTokens")
@@ -14,7 +17,7 @@ export class MongoAccountTokenRepository implements UpdateTokenRepository, FindT
         return null
     }
 
-    async update(accountId: string, token: string, tokenName: "accessToken"): Promise<void> {
+    public async update(accountId: string, token: string, tokenName: "accessToken"): Promise<void> {
         await mongoHelper.connect()
 
         const tokenCollection = mongoHelper.db.collection("accountTokens")

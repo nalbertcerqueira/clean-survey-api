@@ -10,7 +10,7 @@ export class SignUpController implements Controller {
         private readonly createAccountUseCase: CreateAccountUseCase
     ) {}
 
-    async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+    public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         const { name, email, password, role } = httpRequest.body
 
         try {

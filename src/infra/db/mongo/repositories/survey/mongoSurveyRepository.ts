@@ -13,7 +13,7 @@ import { ObjectId } from "mongodb"
 export class MongoSurveyRepository
     implements AddSurveyRepository, GetSurveysRepository, FindSurveyByIdRepository
 {
-    async add(survey: SurveyWithoutId): Promise<void> {
+    public async add(survey: SurveyWithoutId): Promise<void> {
         await mongoHelper.connect()
 
         const surveyCollection = mongoHelper.db.collection("surveys")
@@ -23,7 +23,7 @@ export class MongoSurveyRepository
         )
     }
 
-    async getAll(): Promise<ISurvey[]> {
+    public async getAll(): Promise<ISurvey[]> {
         await mongoHelper.connect()
 
         const surveyCollection = mongoHelper.db.collection("surveys")
@@ -37,7 +37,7 @@ export class MongoSurveyRepository
         }))
     }
 
-    async findById(surveyId: string): Promise<ISurvey | null> {
+    public async findById(surveyId: string): Promise<ISurvey | null> {
         try {
             new ObjectId(surveyId)
         } catch {

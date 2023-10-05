@@ -13,7 +13,7 @@ export class AuthenticationUseCase {
         private readonly tokenGenerator: TokenGeneratorService
     ) {}
 
-    async execute(authData: AuthenticationInputDTO): Promise<string | null> {
+    public async execute(authData: AuthenticationInputDTO): Promise<string | null> {
         const { email, password } = authData
         const foundAccount = await this.findAccountRepository.findByEmail(email)
 

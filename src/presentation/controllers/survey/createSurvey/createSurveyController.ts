@@ -10,7 +10,7 @@ export class CreateSurveyController implements Controller {
         private readonly createSurveyUseCase: CreateSurveyUseCase
     ) {}
 
-    async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+    public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         const { question, answers } = httpRequest.body
 
         try {

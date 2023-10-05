@@ -12,7 +12,9 @@ export class UpdateSurveyResultUseCase {
         private readonly findSurveyRepository: FindSurveyByIdRepository
     ) {}
 
-    async execute(rawResultRegistry: UpdateSurveyResultInputDTO): Promise<ISurveyResult | null> {
+    public async execute(
+        rawResultRegistry: UpdateSurveyResultInputDTO
+    ): Promise<ISurveyResult | null> {
         const { answerId, surveyId } = rawResultRegistry
 
         const foundSurvey = await this.findSurveyRepository.findById(surveyId)

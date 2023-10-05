@@ -5,7 +5,7 @@ import { GetSurveysRepository } from "@domain/repositories/survey/getSurveysRepo
 export class GetAllSurveysUseCase {
     constructor(private readonly getSurveysRepository: GetSurveysRepository) {}
 
-    async execute(): Promise<ISurvey[]> {
+    public async execute(): Promise<ISurvey[]> {
         const surveys = await this.getSurveysRepository.getAll()
         return surveys
     }

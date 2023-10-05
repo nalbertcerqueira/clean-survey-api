@@ -4,7 +4,7 @@ import { DeleteSurveyResultRepository } from "@domain/repositories/surveyResult/
 export class DeleteSurveyResultUseCase {
     constructor(private readonly deleteSurveyResultRepository: DeleteSurveyResultRepository) {}
 
-    async execute(surveyId: string, accountId: string): Promise<boolean> {
+    public async execute(surveyId: string, accountId: string): Promise<boolean> {
         const deletedRegistry = await this.deleteSurveyResultRepository.delete(surveyId, accountId)
 
         if (!deletedRegistry) {

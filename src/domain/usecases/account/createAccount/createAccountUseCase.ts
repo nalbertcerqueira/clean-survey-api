@@ -11,7 +11,7 @@ export class CreateAccountUseCase {
         private readonly findAccountRepository: FindAccountByEmailRepository
     ) {}
 
-    async execute(rawAccount: CreateAccountInputDTO): Promise<CreateAccountOutputDTO> {
+    public async execute(rawAccount: CreateAccountInputDTO): Promise<CreateAccountOutputDTO> {
         const { password, ...accountWithoutPassword } = rawAccount
         const foundAccount = await this.findAccountRepository.findByEmail(rawAccount.email)
 

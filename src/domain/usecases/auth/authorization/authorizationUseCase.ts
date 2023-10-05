@@ -10,7 +10,7 @@ export class AuthorizationUseCase {
         private readonly findAccountRepository: FindAccountByIdRepository
     ) {}
 
-    async execute(accessToken: string, role?: string): Promise<string | null> {
+    public async execute(accessToken: string, role?: string): Promise<string | null> {
         const validationResult = await this.tokenValidator.validate(accessToken)
 
         if (validationResult) {

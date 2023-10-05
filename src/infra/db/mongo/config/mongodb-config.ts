@@ -14,7 +14,7 @@ class MongoHelper {
         this.db = this.client.db(dbName)
     }
 
-    async connect(): Promise<void> {
+    public async connect(): Promise<void> {
         if (this.#isConnected) return
 
         this.clearListeners()

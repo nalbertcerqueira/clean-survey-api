@@ -10,7 +10,7 @@ export class DeleteSurveyResultController implements Controller {
         private readonly deleteSurveyResultUseCase: DeleteSurveyResultUseCase
     ) {}
 
-    async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+    public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         const id = httpRequest.params?.id as string
         const accountId = httpRequest.locals?.accountId as string
 

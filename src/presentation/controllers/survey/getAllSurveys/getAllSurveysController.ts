@@ -6,7 +6,7 @@ import { GetAllSurveysUseCase } from "@domain/usecases/survey/getAllSurveys/getA
 export class GetAllSurveysController implements Controller {
     constructor(private readonly getAllSurveysUseCase: GetAllSurveysUseCase) {}
 
-    async handle(): Promise<HttpResponse> {
+    public async handle(): Promise<HttpResponse> {
         try {
             const surveys = await this.getAllSurveysUseCase.execute()
             return success(surveys)

@@ -16,7 +16,7 @@ export class MongoSurveyResultRepository
         FindSurveyResultByIdRepository,
         DeleteSurveyResultRepository
 {
-    async update(resultRegistry: ResultRegistry): Promise<void> {
+    public async update(resultRegistry: ResultRegistry): Promise<void> {
         await mongoHelper.connect()
 
         const { accountId, surveyId, answerId } = resultRegistry
@@ -29,7 +29,7 @@ export class MongoSurveyResultRepository
         )
     }
 
-    async findBySurveyId(surveyId: string): Promise<ISurveyResult | null> {
+    public async findBySurveyId(surveyId: string): Promise<ISurveyResult | null> {
         await mongoHelper.connect()
 
         try {
@@ -104,7 +104,10 @@ export class MongoSurveyResultRepository
         return surveyResults[0] || null
     }
 
-    async delete(surveyId: string, accountId: string): Promise<ISurveyResultRegistry | null> {
+    public async delete(
+        surveyId: string,
+        accountId: string
+    ): Promise<ISurveyResultRegistry | null> {
         await mongoHelper.connect()
 
         const surveyResultCollection = mongoHelper.db.collection("surveyResults")
