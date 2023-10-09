@@ -7,7 +7,7 @@
 
 ## 📋 Descrição
 
-Este projeto teve como objetivo desenvolver uma API de enquetes em Node.js seguindo os padrões REST, como também, aplicar os principais conceitos do **Clean Architecture**, e os princípios **SOLID**. O desenvolvimento desta API se baseou no treinamento ministrado pelo professor [Rodrigo **Manguinho**](https://www.udemy.com/user/rodrigo-manguinho) em um de seus cursos na Udemy.
+Este projeto teve como objetivo desenvolver uma API de enquetes em Node.js seguindo os padrões REST, como também, aplicar os principais conceitos do **Clean Architecture**, e os princípios **SOLID**. O desenvolvimento desta API se baseou no treinamento ministrado pelo professor [Rodrigo Manguinho](https://www.udemy.com/user/rodrigo-manguinho) em um de seus cursos na Udemy.
 
 ### Arquitetura do projeto
 
