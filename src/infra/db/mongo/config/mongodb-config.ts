@@ -1,13 +1,14 @@
 import dotenv from "dotenv"
+import * as schemas from "./validators"
 import { Db, MongoClient, MongoClientOptions, ServerApiVersion } from "mongodb"
 
 dotenv.config()
 
-//Helper para auxiliar a implementação do mongodb nos repositórios
+//Helper para auxiliar na utilização do mongodb nos repositórios
 class MongoHelper {
     private readonly client: MongoClient
     public readonly db: Db
-    #isConnected: boolean = false
+    private isConnected: boolean = false
 
     constructor(client: MongoClient, dbName: string) {
         this.client = client
@@ -15,48 +16,56 @@ class MongoHelper {
     }
 
     public async connect(): Promise<void> {
-        if (this.#isConnected) return
+        if (this.isConnected) return
 
         this.clearListeners()
         this.addListeners()
 
         try {
             await this.client.connect()
-            this.#isConnected = true
+            await this.createCollections()
+            this.isConnected = true
         } catch (error: any) {
-            console.error(error)
+            console.error(error.message)
             this.client.close()
             this.clearListeners()
-            this.#isConnected = false
+            this.isConnected = false
             process.exit(1)
         }
     }
 
     private clearListeners(): void {
-        this.client.removeAllListeners("connectionCreated")
-        this.client.removeAllListeners("connectionClosed")
         this.client.removeAllListeners("open")
         this.client.removeAllListeners("close")
     }
 
     private addListeners(): void {
-        this.client.on("connectionCreated", () => {
-            console.log("mongodb connected with success!")
-        })
-
         this.client.on("open", () => {
             console.log("mongodb connected with success!")
         })
 
-        this.client.on("connectionClosed", () => {
-            console.log("mongodb connection closed!")
-            this.#isConnected = false
-        })
-
         this.client.on("close", () => {
             console.log("mongodb connection closed!")
-            this.#isConnected = false
+            this.isConnected = false
         })
+    }
+
+    private async createCollections(): Promise<void> {
+        try {
+            await Promise.all([
+                this.db.createCollection("accounts", { validator: schemas.accountMongoSchema }),
+                this.db.createCollection("accountTokens", {
+                    validator: schemas.tokenMongoSchema
+                }),
+                this.db.createCollection("surveys", { validator: schemas.surveyMongoSchema }),
+                this.db.createCollection("surveyResults", {
+                    validator: schemas.resultMongoSchema
+                }),
+                this.db.createCollection("errorLogs", { validator: schemas.errorLogMongoSchema })
+            ])
+        } catch {
+            null
+        }
     }
 }
 
