@@ -18,7 +18,7 @@ export class JwtTokenService implements TokenGeneratorService, TokenValidatorSer
 
     public async validate(token: string): Promise<Payload | null> {
         try {
-            const payload = jwt.verify(token, this.secretKey) as Payload
+            const payload = jwt.verify(token, this.secretKey, { algorithms: ["HS256"] }) as Payload
             return payload
         } catch {
             return null
