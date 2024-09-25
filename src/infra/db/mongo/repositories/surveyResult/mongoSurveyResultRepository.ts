@@ -110,12 +110,13 @@ export class MongoSurveyResultRepository
     ): Promise<ISurveyResultRegistry | null> {
         await mongoHelper.connect()
 
-        const surveyResultCollection = mongoHelper.db.collection("surveyResults")
-        const deletedRegistry = (await surveyResultCollection.findOneAndDelete(
+        const surveyResultCollection =
+            mongoHelper.db.collection<ISurveyResultRegistry>("surveyResults")
+        const deletedRegistry = await surveyResultCollection.findOneAndDelete(
             { surveyId, accountId },
             { projection: { createdAt: 0 } }
-        )) as ISurveyResultRegistry | null
+        )
 
-        return deletedRegistry
+        return deletedRegistry.value
     }
 }

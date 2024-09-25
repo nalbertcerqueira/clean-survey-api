@@ -11,7 +11,8 @@ export class JwtTokenService implements TokenGeneratorService, TokenValidatorSer
 
         const token = jwt.sign({ id, iat }, this.secretKey, {
             expiresIn,
-            notBefore: 0
+            notBefore: 0,
+            algorithm: "HS256"
         })
         return token
     }

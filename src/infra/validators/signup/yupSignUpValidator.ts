@@ -10,7 +10,7 @@ export class YupSignUpValidator implements SchemaValidatorService {
         const passwordsMismatch = new MismatchParamError("password", "password confirmation")
         this.signUpSchema = object({
             name: string().defined().min(4),
-            role: string().optional().oneOf(["admin"]),
+            role: string().optional().oneOf(["admin", "user"]),
             email: string().defined().min(8).email(),
             password: string().defined().min(6),
             passwordConfirmation: string()

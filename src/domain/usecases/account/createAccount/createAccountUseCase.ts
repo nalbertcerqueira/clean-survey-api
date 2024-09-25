@@ -12,14 +12,15 @@ export class CreateAccountUseCase {
     ) {}
 
     public async execute(rawAccount: CreateAccountInputDTO): Promise<CreateAccountOutputDTO> {
-        const { password, ...accountWithoutPassword } = rawAccount
         const foundAccount = await this.findAccountRepository.findByEmail(rawAccount.email)
 
         if (!foundAccount) {
-            const hashedPassword = await this.hasher.hash(password)
+            const hashedPassword = await this.hasher.hash(rawAccount.password)
 
             const { id, name, email, role } = await this.addAccountRepository.add({
-                ...accountWithoutPassword,
+                name: rawAccount.name,
+                email: rawAccount.email,
+                role: rawAccount.role || "user",
                 password: hashedPassword
             })
 
