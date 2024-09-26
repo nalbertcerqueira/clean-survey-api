@@ -16,16 +16,16 @@ export class MongoAccountTokenRepository implements UpdateTokenRepository, FindT
             tokenName
         })
 
-        return foundToken ? foundToken.tokenValue : null
+        return foundToken ? foundToken.value : null
     }
 
     public async update(accountId: string, token: string, tokenName: TokenNames): Promise<void> {
         await mongoHelper.connect()
 
-        const tokenCollection = mongoHelper.db.collection("accountTokens")
+        const tokenCollection = mongoHelper.db.collection<MongoTokenModel>("accountTokens")
         await tokenCollection.findOneAndUpdate(
-            { accountId, tokenName },
-            { $set: { tokenValue: token } },
+            { accountId, name: tokenName },
+            { $set: { value: token } },
             { upsert: true }
         )
     }

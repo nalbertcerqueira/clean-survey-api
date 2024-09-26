@@ -1,3 +1,3 @@
 import { IAccountToken } from "@domain/entities/accountToken"
 
-export type TokenNames = IAccountToken["tokenName"]
+export type TokenNames = IAccountToken["name"]
