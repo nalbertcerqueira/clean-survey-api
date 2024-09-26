@@ -12,6 +12,7 @@ export class LogControllerDecorator implements Controller {
 
     public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         const response = await this.controller.handle(httpRequest)
+        const { statusCode, errors, headers } = response
 
         if (response.body && response.statusCode === 500) {
             try {
@@ -22,6 +23,6 @@ export class LogControllerDecorator implements Controller {
             }
         }
 
-        return response
+        return errors ? { statusCode, errors, headers } : response
     }
 }
