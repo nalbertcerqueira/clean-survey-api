@@ -22,7 +22,7 @@ export const put = {
                     $ref: "#/components/schemas/SurveyResultData"
                 },
                 example: {
-                    answerId: "ba1db6c0-ad3e-4c36-a748-bdde49d4a910"
+                    answerId: "1"
                 }
             }
         }
@@ -43,19 +43,19 @@ export const put = {
                     },
                     example: {
                         body: {
-                            id: "6507b3d1f5546c66bd006ed5",
+                            id: "37f2b3a0-69c4-4575-82aa-cfcfc296c27d",
                             question: "Survey question",
-                            createdAt: 1695003701964,
+                            createdAt: "2024-09-26T23:07:50.371Z",
                             totalCount: 5,
                             answers: [
                                 {
-                                    id: "5a20dac7-add4-4cd8-a300-03fac0904ace",
+                                    id: "1",
                                     answer: "First answer",
                                     count: 3,
                                     percent: 60
                                 },
                                 {
-                                    id: "10786a70-a0e1-4b65-a190-362cfd0a899b",
+                                    id: "2",
                                     answer: "Second answer",
                                     count: 2,
                                     percent: 40

@@ -18,7 +18,7 @@ export class MongoSurveyRepository
 
         const surveyCollection = mongoHelper.db.collection("surveys")
         await surveyCollection.insertOne(
-            { ...survey, createdAt: Date.now(), updatedAt: Date.now() },
+            { ...survey, createdAt: new Date(), updatedAt: new Date() },
             { ignoreUndefined: true }
         )
     }

@@ -21,17 +21,17 @@ export const get = {
                     example: {
                         body: [
                             {
-                                id: "65073839f5546c66bd006ed0",
+                                id: "37f2b3a0-69c4-4575-82aa-cfcfc296c27d",
                                 question: "Survey question",
-                                createdAt: 1694971999332,
+                                createdAt: "2024-09-26T23:07:50.371Z",
                                 answers: [
                                     {
-                                        id: "bc4534eb-dee3-4026-8bd9-d278ef8371ab",
+                                        id: "1",
                                         answer: "First answer",
                                         image: "https://image-url.com"
                                     },
                                     {
-                                        id: "e9efd724-e779-4fc7-97dd-9448f2ac5cf3",
+                                        id: "2",
                                         answer: "Second answer"
                                     }
                                 ]

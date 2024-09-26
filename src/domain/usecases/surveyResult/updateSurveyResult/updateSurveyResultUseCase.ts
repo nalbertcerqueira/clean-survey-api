@@ -15,13 +15,13 @@ export class UpdateSurveyResultUseCase {
     public async execute(
         rawResultRegistry: UpdateSurveyResultInputDTO
     ): Promise<ISurveyResult | null> {
-        const { answerId, surveyId } = rawResultRegistry
+        const { answerId, surveyId, accountId } = rawResultRegistry
 
         const foundSurvey = await this.findSurveyRepository.findById(surveyId)
         const foundAnswer = foundSurvey?.answers.find((answer) => answer.id === answerId)
 
         if (foundSurvey && foundAnswer) {
-            await this.updateSurveyResultRepository.update({ ...rawResultRegistry })
+            await this.updateSurveyResultRepository.update({ answerId, surveyId, accountId })
 
             const surveyResult = await this.findSurveyResultRepository.findBySurveyId(surveyId)
             return surveyResult

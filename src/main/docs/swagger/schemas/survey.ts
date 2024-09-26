@@ -28,7 +28,7 @@ export const arrayOfSurveys = {
         properties: {
             id: { type: "string" },
             question: { type: "string" },
-            createdAt: { type: "number" },
+            createdAt: { type: "string", format: "date-time" },
             answers: {
                 type: "array",
                 minItems: 1,

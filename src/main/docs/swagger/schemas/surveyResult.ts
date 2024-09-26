@@ -15,7 +15,7 @@ export const surveyResultSchema = {
     properties: {
         id: { type: "string" },
         question: { type: "string" },
-        createdAt: { type: "number" },
+        createdAt: { type: "string", format: "date-time" },
         totalCount: { type: "integer", format: "int" },
         answers: {
             type: "array",

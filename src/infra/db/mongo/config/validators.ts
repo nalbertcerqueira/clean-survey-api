@@ -70,10 +70,10 @@ export const surveyMongoSchema: Document = {
                 minLength: 8
             },
             createdAt: {
-                bsonType: "double"
+                bsonType: "date"
             },
             updatedAt: {
-                bsonType: "double"
+                bsonType: "date"
             },
             answers: {
                 bsonType: "array",
@@ -119,10 +119,10 @@ export const resultMongoSchema: Document = {
                 bsonType: "string"
             },
             createdAt: {
-                bsonType: "double"
+                bsonType: "date"
             },
             updatedAt: {
-                bsonType: "double"
+                bsonType: "date"
             }
         }
     }

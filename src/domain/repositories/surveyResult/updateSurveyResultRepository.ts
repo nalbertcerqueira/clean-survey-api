@@ -1,6 +1,6 @@
 import { ISurveyResultRegistry } from "@domain/entities/surveyResult"
 
-export type ResultRegistry = Omit<ISurveyResultRegistry, "id" | "updatedAt">
+export type ResultRegistry = Omit<ISurveyResultRegistry, "createdAt">
 
 //Representa a operação de atualização de um registro de resposta de um usuário
 export interface UpdateSurveyResultRepository {

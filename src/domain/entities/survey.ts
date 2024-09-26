@@ -1,11 +1,9 @@
-import * as uuid from "uuid"
-
 //Representação dos dados de um enquete
 export interface ISurvey {
     readonly id: string
-    readonly createdAt: number
     question: string
     answers: ISurveyAnswer[]
+    readonly createdAt: Date
 }
 
 //Representação da resposta de uma enquete
@@ -20,8 +18,8 @@ export class SurveyAnswer implements ISurveyAnswer {
     public answer: string
     public image?: string
 
-    constructor(props: { answer: string; id?: string; image?: string }) {
-        this.id = props.id || uuid.v4()
+    constructor(props: { answer: string; id: string; image?: string }) {
+        this.id = props.id
         this.answer = props.answer
         this.image = props.image
     }

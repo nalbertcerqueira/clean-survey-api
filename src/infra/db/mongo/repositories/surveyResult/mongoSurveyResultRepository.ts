@@ -24,8 +24,8 @@ export class MongoSurveyResultRepository
 
         await surveyResultCollection.findOneAndUpdate(
             { accountId, surveyId },
-            { $set: { answerId, updatedAt: Date.now() }, $setOnInsert: { createdAt: Date.now() } },
-            { projection: { createdAt: 0 }, upsert: true }
+            { $set: { answerId, updatedAt: new Date() }, $setOnInsert: { createdAt: new Date() } },
+            { projection: { updatedAt: 0 }, upsert: true }
         )
     }
 
@@ -114,7 +114,7 @@ export class MongoSurveyResultRepository
             mongoHelper.db.collection<ISurveyResultRegistry>("surveyResults")
         const deletedRegistry = await surveyResultCollection.findOneAndDelete(
             { surveyId, accountId },
-            { projection: { createdAt: 0 } }
+            { projection: { updatedAt: 0 } }
         )
 
         return deletedRegistry.value
