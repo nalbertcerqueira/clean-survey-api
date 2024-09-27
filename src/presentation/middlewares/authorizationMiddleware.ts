@@ -1,13 +1,14 @@
 import { HttpRequest, HttpResponse, Middleware } from "@presentation/protocols"
 import { serverError, success, unauthorized } from "@presentation/helpers/httpHelpers"
 import { AuthorizationUseCase } from "@domain/usecases/auth/authorization/authorizationUseCase"
+import { Role } from "@domain/entities/account"
 
 //Middleware responsável por enviar uma resposta informado se as credenciais
 //do usuário, token e role, são validas.
 export class AuthorizationMiddleware implements Middleware {
     constructor(
         private readonly authorizationUseCase: AuthorizationUseCase,
-        private readonly role?: string
+        private readonly role?: Role
     ) {}
 
     public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {

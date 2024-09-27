@@ -2,6 +2,7 @@ import { makeLogControllerDecorator } from "@main/factories/decorators/logDecora
 import { MongoAccountRepository } from "@infra/db/mongo/repositories/account/mongoAccountRepository"
 import { JwtTokenService } from "@infra/services/jwtTokenService"
 import { MongoAccountTokenRepository } from "@infra/db/mongo/repositories/accountToken/mongoAccountTokenRepository"
+import { Role } from "@domain/entities/account"
 import { AuthorizationMiddleware } from "@presentation/middlewares/authorizationMiddleware"
 import { Controller } from "@presentation/protocols"
 import { AuthorizationUseCase } from "@domain/usecases/auth/authorization/authorizationUseCase"
@@ -9,7 +10,7 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-export function makeAuthMiddleware(role?: string): Controller {
+export function makeAuthMiddleware(role?: Role): Controller {
     const secretKey = process.env.SECRET_KEY as string
 
     const mongoAccountRepository = new MongoAccountRepository()

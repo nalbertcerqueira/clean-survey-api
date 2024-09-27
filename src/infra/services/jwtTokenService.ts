@@ -1,3 +1,4 @@
+import { Role } from "@domain/entities/account"
 import { TokenGeneratorService } from "@domain/services/token/tokenGeneratorService"
 import { Payload, TokenValidatorService } from "@domain/services/token/tokenValidatorService"
 import jwt from "jsonwebtoken"
@@ -5,7 +6,7 @@ import jwt from "jsonwebtoken"
 export class JwtTokenService implements TokenGeneratorService, TokenValidatorService {
     constructor(private readonly secretKey: string) {}
 
-    public async generate(id: string, role: string): Promise<string> {
+    public async generate(id: string, role: Role): Promise<string> {
         const iat: number = Math.floor(Date.now() / 1000)
         const expiresIn: number = 86400
 

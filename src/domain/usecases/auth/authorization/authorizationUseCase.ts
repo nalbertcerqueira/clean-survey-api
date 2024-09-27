@@ -1,3 +1,4 @@
+import { Role } from "@domain/entities/account"
 import { FindAccountByIdRepository } from "@domain/repositories/account/findAccountByIdRepository"
 import { FindTokenByIdRepository } from "@domain/repositories/token/findTokenByIdRepository"
 import { TokenValidatorService } from "@domain/services/token/tokenValidatorService"
@@ -10,7 +11,7 @@ export class AuthorizationUseCase {
         private readonly findAccountRepository: FindAccountByIdRepository
     ) {}
 
-    public async execute(accessToken: string, role?: string): Promise<string | null> {
+    public async execute(accessToken: string, role?: Role): Promise<string | null> {
         const validationResult = await this.tokenValidator.validate(accessToken)
 
         if (validationResult) {
