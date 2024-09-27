@@ -21,7 +21,10 @@ export class AuthenticationUseCase {
             const validPassword = await this.hashComparer.compare(password, foundAccount.password)
 
             if (validPassword) {
-                const accessToken = await this.tokenGenerator.generate(foundAccount.id)
+                const accessToken = await this.tokenGenerator.generate(
+                    foundAccount.id,
+                    foundAccount.role
+                )
                 await this.updateTokenRepository.update(foundAccount.id, accessToken, "accessToken")
 
                 return accessToken

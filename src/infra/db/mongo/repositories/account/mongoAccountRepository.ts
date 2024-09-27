@@ -55,7 +55,7 @@ export class MongoAccountRepository
         await mongoHelper.connect()
 
         const accountCollection = mongoHelper.db.collection("accounts")
-        const query = { _id: new ObjectId(id), role: { $in: [role, "admin"] } }
+        const query = { _id: new ObjectId(id), role }
         const findOptions: FindOptions = {
             projection: { createdAt: 0, updatedAt: 0 },
             ignoreUndefined: true

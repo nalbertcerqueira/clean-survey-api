@@ -1,5 +1,6 @@
 export interface Payload {
     id: string
+    role: string
 }
 
 //Abstração de um serviço de validação de tokens
