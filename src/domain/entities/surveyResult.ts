@@ -17,7 +17,7 @@ export interface ISurveyResult {
 
 export interface ISurveyResultAnswer {
     readonly id: string
-    image?: string
+    image: string | null
     answer: string
     count: number
     percent: number

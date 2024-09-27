@@ -87,8 +87,7 @@ export const surveyMongoSchema: Document = {
                             bsonType: "string"
                         },
                         answer: {
-                            bsonType: "string",
-                            minLength: 6
+                            oneOf: [{ bsonType: "string", minLength: 6 }, { bsonType: "null" }]
                         },
                         image: {
                             bsonType: "string"

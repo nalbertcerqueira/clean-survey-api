@@ -7,7 +7,7 @@ export class YupCreateSurveyValidator implements SchemaValidatorService {
     constructor() {
         const answerSchema = object({
             answer: string().defined().min(6),
-            image: string().optional()
+            image: string()
         }).noUnknown()
 
         this.SurveySchema = object({

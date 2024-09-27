@@ -8,8 +8,14 @@ export class CreateSurveyUseCase {
 
     public async execute(rawSurvey: CreateSurveyInputDTO): Promise<void> {
         const { question, answers } = rawSurvey
+
         const answersWithId = answers.map(
-            (answer, i) => new SurveyAnswer({ ...answer, id: `${i + 1}` })
+            (value, i) =>
+                new SurveyAnswer({
+                    id: `${i + 1}`,
+                    answer: value.answer,
+                    image: value.image ?? null
+                })
         )
 
         await this.addSurveyRepository.add({
