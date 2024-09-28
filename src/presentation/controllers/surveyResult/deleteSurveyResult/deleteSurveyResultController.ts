@@ -1,12 +1,12 @@
 import { Controller, HttpRequest, HttpResponse } from "@presentation/protocols"
 import { notFound, serverError, success } from "@presentation/helpers/httpHelpers"
 import { DeleteSurveyResultUseCase } from "@domain/usecases/surveyResult/deleteSurveyResult/deleteSurveyResultUseCase"
-import { FindSurveyByIdRepository } from "@domain/repositories/survey/findSurveyByIdRepository"
+import { FindSurveyByIdUseCase } from "@domain/usecases/survey/findSurvey/findeSurveyByIdUseCase"
 
 //Controlador responsável por excluir um registro de resposta do usuário
 export class DeleteSurveyResultController implements Controller {
     constructor(
-        private readonly findSurveyRepository: FindSurveyByIdRepository,
+        private readonly findSurveyByIdUseCase: FindSurveyByIdUseCase,
         private readonly deleteSurveyResultUseCase: DeleteSurveyResultUseCase
     ) {}
 
@@ -15,7 +15,7 @@ export class DeleteSurveyResultController implements Controller {
         const accountId = httpRequest.locals?.accountId as string
 
         try {
-            const foundSurvey = await this.findSurveyRepository.findById(id)
+            const foundSurvey = await this.findSurveyByIdUseCase.execute(id)
             if (!foundSurvey) {
                 return notFound(`Survey with id '${id}' not found`)
             }
