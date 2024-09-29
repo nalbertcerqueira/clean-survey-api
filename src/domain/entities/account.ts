@@ -1,11 +1,11 @@
 //Representação da conta de um usuário
 
-export type Role = "user" | "admin"
+export type IRole = "user" | "admin"
 
 export interface IAccount {
     readonly id: string
     name: string
-    role: Role
+    role: IRole
     email: string
     password: string
 }

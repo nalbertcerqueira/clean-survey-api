@@ -10,7 +10,7 @@ import {
     IAccount,
     MongoAccountModel
 } from "./protocols"
-import { Role } from "@domain/entities/account"
+import { IRole } from "@domain/entities/account"
 
 export class MongoAccountRepository
     implements AddAccountRepository, FindAccountByEmailRepository, FindAccountByIdRepository
@@ -47,7 +47,7 @@ export class MongoAccountRepository
         return null
     }
 
-    public async findById(id: string, role?: Role): Promise<IAccount | null> {
+    public async findById(id: string, role?: IRole): Promise<IAccount | null> {
         try {
             new ObjectId(id)
         } catch {

@@ -1,6 +1,6 @@
-import { Role } from "@domain/entities/account"
+import { IRole } from "@domain/entities/account"
 
 //Abstração de um serviço de geração de tokens
 export interface TokenGeneratorService {
-    generate(id: string, role: Role): Promise<string>
+    generate(id: string, role: IRole): Promise<string>
 }

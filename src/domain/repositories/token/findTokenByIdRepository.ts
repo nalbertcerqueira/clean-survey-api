@@ -1,6 +1,6 @@
-import { TokenNames } from "./protocols"
+import { IAccountToken } from "@domain/entities/accountToken"
 
 //Abstração para a operação de encontrar um token do usuário
 export interface FindTokenByIdRepository {
-    findByAccountId(accountId: string, tokenName: TokenNames): Promise<string | null>
+    findByAccountId(data: Pick<IAccountToken, "accountId" | "name">): Promise<string | null>
 }

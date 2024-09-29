@@ -1,6 +1,6 @@
-import { TokenNames } from "./protocols"
+import { IAccountToken } from "@domain/entities/accountToken"
 
 //Abstração para a operação de atualizar o token de um usuário no repositório
 export interface UpdateTokenRepository {
-    update(accountId: string, token: string, tokenName: TokenNames): Promise<void>
+    update(token: IAccountToken): Promise<void>
 }

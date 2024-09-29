@@ -6,7 +6,7 @@ dotenv.config()
 
 //Helper para auxiliar na utilização do mongodb nos repositórios
 class MongoHelper {
-    private readonly client: MongoClient
+    public readonly client: MongoClient
     public readonly db: Db
     private isConnected: boolean = false
 

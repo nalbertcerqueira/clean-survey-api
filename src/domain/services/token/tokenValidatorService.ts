@@ -1,8 +1,8 @@
-import { Role } from "@domain/entities/account"
+import { IRole } from "@domain/entities/account"
 
 export interface Payload {
     id: string
-    role: Role
+    role: IRole
 }
 
 //Abstração de um serviço de validação de tokens

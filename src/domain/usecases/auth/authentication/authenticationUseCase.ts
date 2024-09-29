@@ -25,7 +25,11 @@ export class AuthenticationUseCase {
                     foundAccount.id,
                     foundAccount.role
                 )
-                await this.updateTokenRepository.update(foundAccount.id, accessToken, "accessToken")
+                await this.updateTokenRepository.update({
+                    accountId: foundAccount.id,
+                    name: "accessToken",
+                    value: accessToken
+                })
 
                 return accessToken
             }
