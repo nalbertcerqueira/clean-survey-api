@@ -2,7 +2,7 @@
 
 ![TypeScript badge](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Express badge](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![Mongodb badge](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![Swagger badge](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=black)
 
 ## 📋 Descrição
@@ -107,7 +107,7 @@ src - ROOT
 
 -   Typescript
 -   Express
--   Mongodb
+-   Mysql
 -   Jsonwebtoken
 -   SwaggerUI
 -   Husky
