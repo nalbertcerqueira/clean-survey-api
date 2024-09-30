@@ -1,9 +1,24 @@
 import "reflect-metadata"
 import dotenv from "dotenv"
 import { DataSource } from "typeorm"
+import { ErrorORMEntity } from "../models/errorModel"
+import { SurveyORMEntity } from "../models/surveyModel"
+import { AccountORMEntity } from "../models/accountModel"
+import { AccountTokenORMEntity } from "../models/accountTokenModel"
+import { SurveyAnswerORMEntity } from "../models/surveyAnswerModel"
+import { SurveyResponseORMEntity } from "../models/surveyResponseModel"
 import { MysqlDataSourceDecorator } from "../helpers"
 
 dotenv.config()
+
+const entities = [
+    AccountORMEntity,
+    AccountTokenORMEntity,
+    SurveyORMEntity,
+    SurveyAnswerORMEntity,
+    SurveyResponseORMEntity,
+    ErrorORMEntity
+]
 
 const ORMDataSource = new DataSource({
     type: "mysql",
@@ -12,6 +27,7 @@ const ORMDataSource = new DataSource({
     database: process.env.DB_NAME,
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
+    entities: entities,
     synchronize: process.env.ORM_SYNC === "true",
     logging: false,
     poolSize: parseInt(process.env.DB_POOL_SIZE as string) || 1,

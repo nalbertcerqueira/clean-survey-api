@@ -1,11 +1,11 @@
-import { makeLogControllerDecorator } from "@main/factories/decorators/logDecoratorFactory"
-import { MongoAccountRepository } from "@infra/db/mongo/repositories/account/mongoAccountRepository"
+import { Controller } from "@presentation/protocols"
 import { JwtTokenService } from "@infra/services/jwtTokenService"
-import { MongoAccountTokenRepository } from "@infra/db/mongo/repositories/accountToken/mongoAccountTokenRepository"
+import { makeLogControllerDecorator } from "@main/factories/decorators/logDecoratorFactory"
 import { IRole } from "@domain/entities/account"
 import { AuthorizationMiddleware } from "@presentation/middlewares/authorizationMiddleware"
-import { Controller } from "@presentation/protocols"
 import { AuthorizationUseCase } from "@domain/usecases/auth/authorization/authorizationUseCase"
+import { MysqlAccountRepository } from "@infra/db/mysql/repositories/account/mysqlAccountRepository"
+import { MysqlAccountTokenRepository } from "@infra/db/mysql/repositories/accountToken/mysqlAccountTokenRepository"
 import dotenv from "dotenv"
 
 dotenv.config()
@@ -13,13 +13,13 @@ dotenv.config()
 export function makeAuthMiddleware(role?: IRole): Controller {
     const secretKey = process.env.SECRET_KEY as string
 
-    const mongoAccountRepository = new MongoAccountRepository()
-    const mongoAccountTokenRepository = new MongoAccountTokenRepository()
+    const mysqlAccountRepository = new MysqlAccountRepository()
+    const mysqlAccountTokenRepository = new MysqlAccountTokenRepository()
     const jwtTokenService = new JwtTokenService(secretKey)
     const authorizationUseCase = new AuthorizationUseCase(
         jwtTokenService,
-        mongoAccountTokenRepository,
-        mongoAccountRepository
+        mysqlAccountTokenRepository,
+        mysqlAccountRepository
     )
 
     const authorizationMiddleware = new AuthorizationMiddleware(authorizationUseCase, role)
