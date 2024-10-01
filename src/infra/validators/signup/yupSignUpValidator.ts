@@ -9,13 +9,14 @@ export class YupSignUpValidator implements SchemaValidatorService {
     constructor() {
         const passwordsMismatch = new MismatchParamError("password", "password confirmation")
         this.signUpSchema = object({
-            name: string().defined().min(4),
+            name: string().defined().min(4).max(100),
             role: string().optional().oneOf(["admin", "user"]),
-            email: string().defined().min(8).email(),
-            password: string().defined().min(6),
+            email: string().defined().min(8).email().max(100),
+            password: string().defined().min(6).max(100),
             passwordConfirmation: string()
                 .defined()
                 .min(6)
+                .max(100)
                 .oneOf([ref("password")], passwordsMismatch.message)
         }).noUnknown()
     }

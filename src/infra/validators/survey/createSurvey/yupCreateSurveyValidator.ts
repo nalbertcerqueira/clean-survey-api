@@ -6,8 +6,8 @@ export class YupCreateSurveyValidator implements SchemaValidatorService {
     private readonly SurveySchema: ObjectSchema<SurveyData>
     constructor() {
         const answerSchema = object({
-            answer: string().defined().min(6),
-            image: string()
+            answer: string().defined().min(6).max(100),
+            image: string().url().max(512)
         }).noUnknown()
 
         this.SurveySchema = object({

@@ -7,8 +7,8 @@ export class YupLoginValidator implements SchemaValidatorService {
 
     constructor() {
         this.loginSchema = object({
-            email: string().defined().email().min(8),
-            password: string().defined().min(6)
+            email: string().defined().email().min(8).max(100),
+            password: string().defined().min(6).max(100)
         }).noUnknown()
     }
 
