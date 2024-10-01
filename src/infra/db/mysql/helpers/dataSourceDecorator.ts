@@ -8,6 +8,22 @@ export class MysqlDataSourceDecorator {
         this._dataSource = dataSource
     }
 
+    public get dataSource(): DataSource {
+        return this._dataSource
+    }
+
+    public async initialize(): Promise<DataSource> {
+        await this.createDatabase()
+        await this.dataSource.initialize()
+        return this.dataSource
+    }
+
+    private async createDatabase(): Promise<void> {
+        const temporaryConnection = await this.createTemporaryConnection()
+        await temporaryConnection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME}`)
+        await temporaryConnection.end()
+    }
+
     private async createTemporaryConnection(): Promise<Connection> {
         const connection = await createConnection({
             host: process.env.DB_HOST,
@@ -17,17 +33,5 @@ export class MysqlDataSourceDecorator {
         })
 
         return connection
-    }
-
-    public async initialize(): Promise<DataSource> {
-        const temporaryConnection = await this.createTemporaryConnection()
-        await temporaryConnection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME}`)
-        await temporaryConnection.end()
-        await this.dataSource.initialize()
-        return this.dataSource
-    }
-
-    public get dataSource(): DataSource {
-        return this._dataSource
     }
 }

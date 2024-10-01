@@ -20,7 +20,7 @@ const entities = [
     ErrorORMEntity
 ]
 
-const ORMDataSource = new DataSource({
+export const ORMDataSource = new DataSource({
     type: "mysql",
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT as string) || 3306,
