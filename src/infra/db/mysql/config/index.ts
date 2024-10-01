@@ -7,7 +7,7 @@ import { AccountORMEntity } from "../models/accountModel"
 import { AccountTokenORMEntity } from "../models/accountTokenModel"
 import { SurveyAnswerORMEntity } from "../models/surveyAnswerModel"
 import { SurveyResponseORMEntity } from "../models/surveyResponseModel"
-import { MysqlDataSourceDecorator } from "../helpers"
+import { MysqlDataSourceDecorator } from "../helpers/dataSourceDecorator"
 
 dotenv.config()
 

@@ -1,14 +1,19 @@
 import { LogErrorRepository } from "@domain/repositories/error/logErrorRepository"
 import { mysqlDataSource } from "../../config"
 import { ErrorORMEntity } from "../../models/errorModel"
+import { Repository } from "typeorm"
 
 export class MysqlErrorLogRepository implements LogErrorRepository {
-    public async log(errorStack: string): Promise<void> {
-        const errorRepository = mysqlDataSource.dataSource.getRepository(ErrorORMEntity)
+    private readonly repository: Repository<ErrorORMEntity>
 
+    constructor() {
+        this.repository = mysqlDataSource.dataSource.getRepository(ErrorORMEntity)
+    }
+
+    public async log(errorStack: string): Promise<void> {
         const error = new ErrorORMEntity()
         error.stack = errorStack
 
-        await errorRepository.save(error, { reload: false })
+        await this.repository.save(error, { reload: false })
     }
 }

@@ -9,10 +9,17 @@ import { ulid, ulidToUUID } from "ulidx"
 import { GetSurveysRepository } from "@domain/repositories/survey/getSurveysRepository"
 import { ISurvey } from "@domain/entities/survey"
 import { FindSurveyByIdRepository } from "@domain/repositories/survey/findSurveyByIdRepository"
+import { Repository } from "typeorm"
 
 export class MysqlSurveyRepository
     implements AddSurveyRepository, GetSurveysRepository, FindSurveyByIdRepository
 {
+    private readonly repository: Repository<SurveyORMEntity>
+
+    constructor() {
+        this.repository = mysqlDataSource.dataSource.getRepository(SurveyORMEntity)
+    }
+
     public async add(survey: SurveyWithoutId): Promise<void> {
         const surveyRepository = mysqlDataSource.dataSource.getRepository(SurveyORMEntity)
 
@@ -33,9 +40,7 @@ export class MysqlSurveyRepository
     }
 
     public async getAll(): Promise<ISurvey[]> {
-        const surveyRepository = mysqlDataSource.dataSource.getRepository(SurveyORMEntity)
-
-        const surveys: ISurvey[] = await surveyRepository.find({
+        const surveys: ISurvey[] = await this.repository.find({
             relations: { answers: true },
             select: {
                 id: true,
@@ -49,9 +54,7 @@ export class MysqlSurveyRepository
     }
 
     public async findById(surveyId: string): Promise<ISurvey | null> {
-        const surveyRepository = mysqlDataSource.dataSource.getRepository(SurveyORMEntity)
-
-        const survey: ISurvey | null = await surveyRepository.findOne({
+        const survey: ISurvey | null = await this.repository.findOne({
             relations: { answers: true },
             where: { id: surveyId },
             select: {

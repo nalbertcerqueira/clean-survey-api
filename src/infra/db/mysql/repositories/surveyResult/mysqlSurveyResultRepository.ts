@@ -8,6 +8,7 @@ import { SurveyResponseORMEntity } from "../../models/surveyResponseModel"
 import { DeleteSurveyResultRepository } from "@domain/repositories/surveyResult/deleteSurveyResultRepository"
 import { FindSurveyResultByIdRepository } from "@domain/repositories/surveyResult/findSurveyResultByIdRepository"
 import { ISurveyResult, ISurveyResultRegistry } from "@domain/entities/surveyResult"
+import { Repository } from "typeorm"
 
 export class MysqlSurveyResultRepository
     implements
@@ -15,12 +16,16 @@ export class MysqlSurveyResultRepository
         DeleteSurveyResultRepository,
         FindSurveyResultByIdRepository
 {
+    private readonly repository: Repository<SurveyResponseORMEntity>
+
+    constructor() {
+        this.repository = mysqlDataSource.dataSource.getRepository(SurveyResponseORMEntity)
+    }
+
     public async update(resultRegistry: ResultRegistry): Promise<void> {
         const { accountId, answerId, surveyId } = resultRegistry
-        const surveyResultRepository =
-            mysqlDataSource.dataSource.getRepository(SurveyResponseORMEntity)
 
-        await surveyResultRepository.save(
+        await this.repository.save(
             { accountId: ulidToUUID(accountId), surveyId, answerId },
             { reload: false }
         )
