@@ -19,7 +19,7 @@ export class MysqlSurveyResultRepository
     private readonly repository: Repository<SurveyResponseORMEntity>
 
     constructor() {
-        this.repository = mysqlDataSource.dataSource.getRepository(SurveyResponseORMEntity)
+        this.repository = mysqlDataSource.getRepository(SurveyResponseORMEntity)
     }
 
     public async update(resultRegistry: ResultRegistry): Promise<void> {
@@ -35,7 +35,7 @@ export class MysqlSurveyResultRepository
         surveyId: string,
         accountId: string
     ): Promise<ISurveyResultRegistry | null> {
-        const queryRunner = mysqlDataSource.dataSource.createQueryRunner()
+        const queryRunner = mysqlDataSource.createQueryRunner()
         const accountUuid = ulidToUUID(accountId)
         await queryRunner.connect()
         await queryRunner.startTransaction()
@@ -69,7 +69,7 @@ export class MysqlSurveyResultRepository
     }
 
     public async findBySurveyId(surveyId: string): Promise<ISurveyResult | null> {
-        const answerStatisticQuery = mysqlDataSource.dataSource
+        const answerStatisticQuery = mysqlDataSource
             .createQueryBuilder()
             .select([
                 "survey.id AS id",
@@ -87,7 +87,7 @@ export class MysqlSurveyResultRepository
             .where("survey.id = UUID_TO_BIN(:surveyId)", { surveyId })
             .groupBy("survey.id, surveyAnswer.id")
 
-        const surveyResultQuery = mysqlDataSource.dataSource
+        const surveyResultQuery = mysqlDataSource
             .createQueryBuilder()
             .select([
                 "BIN_TO_UUID(id) AS id",

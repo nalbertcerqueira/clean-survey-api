@@ -7,7 +7,7 @@ export class MysqlErrorLogRepository implements LogErrorRepository {
     private readonly repository: Repository<ErrorORMEntity>
 
     constructor() {
-        this.repository = mysqlDataSource.dataSource.getRepository(ErrorORMEntity)
+        this.repository = mysqlDataSource.getRepository(ErrorORMEntity)
     }
 
     public async log(errorStack: string): Promise<void> {

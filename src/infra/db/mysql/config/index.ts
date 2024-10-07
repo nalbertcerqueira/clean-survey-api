@@ -1,13 +1,13 @@
 import "reflect-metadata"
 import dotenv from "dotenv"
-import { DataSource } from "typeorm"
+import { DataSourceOptions } from "typeorm"
 import { ErrorORMEntity } from "../models/errorModel"
 import { SurveyORMEntity } from "../models/surveyModel"
 import { AccountORMEntity } from "../models/accountModel"
 import { AccountTokenORMEntity } from "../models/accountTokenModel"
 import { SurveyAnswerORMEntity } from "../models/surveyAnswerModel"
 import { SurveyResponseORMEntity } from "../models/surveyResponseModel"
-import { MysqlDataSourceDecorator } from "../helpers/dataSourceDecorator"
+import { MysqlDataSource } from "../helpers/dataSourceDecorator"
 
 dotenv.config()
 
@@ -20,7 +20,7 @@ const entities = [
     ErrorORMEntity
 ]
 
-export const ORMDataSource = new DataSource({
+const dataSourceOptions: DataSourceOptions = {
     type: "mysql",
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT as string) || 3306,
@@ -40,6 +40,6 @@ export const ORMDataSource = new DataSource({
         enableKeepAlive: true,
         keepAliveInitialDelay: 0
     }
-})
+}
 
-export const mysqlDataSource = new MysqlDataSourceDecorator(ORMDataSource)
+export const mysqlDataSource = new MysqlDataSource(dataSourceOptions)

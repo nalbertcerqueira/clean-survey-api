@@ -15,6 +15,6 @@ mysqlDataSource
     .then(() => applyApiRoutes(server))
     .then(() => server.listen(port, () => console.log(`server running on port ${port}`)))
     .catch(async (error) => {
-        await mysqlDataSource.dataSource.destroy()
+        await mysqlDataSource.destroy()
         console.error(error)
     })

@@ -17,12 +17,10 @@ export class MysqlSurveyRepository
     private readonly repository: Repository<SurveyORMEntity>
 
     constructor() {
-        this.repository = mysqlDataSource.dataSource.getRepository(SurveyORMEntity)
+        this.repository = mysqlDataSource.getRepository(SurveyORMEntity)
     }
 
     public async add(survey: SurveyWithoutId): Promise<void> {
-        const surveyRepository = mysqlDataSource.dataSource.getRepository(SurveyORMEntity)
-
         const answers = survey.answers.map(({ id, answer, image }) => {
             const entity = new SurveyAnswerORMEntity()
             entity.id = id
@@ -36,7 +34,7 @@ export class MysqlSurveyRepository
         newSurvey.question = survey.question
         newSurvey.answers = answers
 
-        await surveyRepository.save(newSurvey, { reload: false })
+        await this.repository.save(newSurvey, { reload: false })
     }
 
     public async getAll(): Promise<ISurvey[]> {

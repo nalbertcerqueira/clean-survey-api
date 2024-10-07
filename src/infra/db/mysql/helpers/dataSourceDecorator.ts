@@ -1,21 +1,15 @@
 import { createConnection, Connection } from "mysql2/promise"
-import { DataSource } from "typeorm"
+import { DataSource, DataSourceOptions } from "typeorm"
 
-export class MysqlDataSourceDecorator {
-    private readonly _dataSource: DataSource
-
-    constructor(dataSource: DataSource) {
-        this._dataSource = dataSource
+export class MysqlDataSource extends DataSource {
+    constructor(options: DataSourceOptions) {
+        super(options)
     }
 
-    public get dataSource(): DataSource {
-        return this._dataSource
-    }
-
-    public async initialize(): Promise<DataSource> {
+    public async initialize(): Promise<this> {
         await this.createDatabase()
-        await this.dataSource.initialize()
-        return this.dataSource
+        await super.initialize()
+        return this
     }
 
     private async createDatabase(): Promise<void> {

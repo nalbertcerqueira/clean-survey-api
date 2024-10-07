@@ -16,7 +16,7 @@ export class MysqlAccountRepository
     private readonly repository: Repository<AccountORMEntity>
 
     constructor() {
-        this.repository = mysqlDataSource.dataSource.getRepository(AccountORMEntity)
+        this.repository = mysqlDataSource.getRepository(AccountORMEntity)
     }
 
     public async add(account: AccountWithoutId): Promise<IAccount> {

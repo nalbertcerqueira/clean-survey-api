@@ -10,7 +10,7 @@ export class MysqlAccountTokenRepository implements UpdateTokenRepository, FindT
     private readonly repository: Repository<AccountTokenORMEntity>
 
     constructor() {
-        this.repository = mysqlDataSource.dataSource.getRepository(AccountTokenORMEntity)
+        this.repository = mysqlDataSource.getRepository(AccountTokenORMEntity)
     }
 
     public async update(token: IAccountToken): Promise<void> {
